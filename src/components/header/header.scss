@@ -1,0 +1,16 @@
+.root{
+    flex-grow: 1;
+}
+.menuButton{
+    margin-right: 10px;
+}
+
+.header__container {
+    height: 3.5rem;
+    width: 70%;
+    max-width: 70%;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
