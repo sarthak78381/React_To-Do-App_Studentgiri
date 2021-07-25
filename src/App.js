@@ -7,8 +7,11 @@ import TaskContainer from './components/taskContainer/TaskContainer'
 import { Typography} from '@material-ui/core'
 
 import './App.css'
+import { connect } from 'react-redux'
+import { createStructuredSelector } from 'reselect'
+import { getUserTasks } from './redux/task/taskSelector'
 
-export default function App() {
+function App() {
     return (
         <div className='body__container'>
             <Header />
@@ -18,3 +21,9 @@ export default function App() {
         </div>
     )
 }
+
+const mapStateToProps = createStructuredSelector({
+    getTasks: getUserTasks
+})
+
+export default connect(mapStateToProps)(App);

@@ -1,20 +1,33 @@
 
 import React from 'react';
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
+import { getFilteredTasks, getUserTasks } from '../../redux/task/taskSelector';
 
 import EachTask from '../eachTask/EachTask';
 
-import './taskcontainer.scss';
+import './taskcontainer.scss';  
 
-const message = 'Hello, I Am Sarthak Gupta, I am a college going student, currently studying BCA from Jagan Institute of Management Studies, Rohini. Here I am praticing as well as showing my Web Development skills.';
-  
-
-export default function TaskContainer() {
-
+function TaskContainer({tasks, filterTask}) {
+    console.log(filterTask)
     return (
         <div className='tasks__container'>
-            {[1,2,3].map(e => (
-                <EachTask message={message}/>
+            {filterTask.length === 0 && tasks.length === 0 && (
+                <h6>Add Todays Tasks to complete</h6>
+            )}
+            {filterTask.length !== 0 && filterTask.map(tasks => (
+                <EachTask key={tasks.title} message={tasks.title}/>
+            ))}
+            {filterTask.length === 0 && tasks.length !== 0 &&  tasks.map(tasks => (
+                <EachTask key={tasks.title} message={tasks.title}/>
             ))}
         </div>
     );
 }
+
+const mapStateToProps = createStructuredSelector({
+    tasks: getUserTasks,
+    filterTask: getFilteredTasks
+})
+
+export default connect(mapStateToProps)(TaskContainer)

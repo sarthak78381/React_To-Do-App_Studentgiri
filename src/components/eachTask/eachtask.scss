@@ -2,6 +2,26 @@
     padding: 8px 16px;
     margin: 1rem 0;
     user-select: none;
+    text-align: start;
+    width: 100%;
+
+    .taskMessage__container{
+        width: 100%;
+        display: flex;
+        align-items: center;
+
+        p{
+            font-size: 20px;
+            transform: translateY(-2.5px);
+        }
+        .updateTask__input{
+            width: 100%;
+            outline: none;
+            border: none;
+            border-bottom: 1px solid #333;
+            font-size: 20px;
+        }
+    }
 }
 
 @media only screen and (max-width: 800px) {
@@ -9,7 +29,7 @@
     
         .taskMessage__container{
             
-            span {
+            p {
                 font-size: 10px;
                 letter-spacing: 0;
             }

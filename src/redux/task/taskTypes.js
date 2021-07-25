@@ -1,0 +1,9 @@
+const taskTypes = {
+    GET_NEW_TASK: "GET_NEW_TASK",
+    REMOVE_TASK: "REMOVE_TASK",
+    UPDATE_TASK: "UPDATE_TASK",
+    CHANGE_COMPLETION_OF_TASK: "CHANGE_COMPLETION_OF_TASK",
+    FILTER_TASK: "FILTER_TASK",
+}
+
+export default taskTypes;
