@@ -12,8 +12,7 @@ export default function Header() {
                     <Typography variant="h6">
                     Sarthak
                     </Typography>
-                    {window.innerWidth > 800 && (<Typography variant='h5'>TODO APP</Typography>)}
-                    <Button color="inherit">Login</Button>
+                    <Button color="inherit" xs='6'>Login</Button>
                 </div>
             </AppBar>
         </div>

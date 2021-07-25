@@ -1,0 +1,18 @@
+.task__container{
+    padding: 8px 16px;
+    margin: 1rem 0;
+    user-select: none;
+}
+
+@media only screen and (max-width: 800px) {
+    .task__container{
+    
+        .taskMessage__container{
+            
+            span {
+                font-size: 10px;
+                letter-spacing: 0;
+            }
+        }
+    }
+}

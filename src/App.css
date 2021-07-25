@@ -12,3 +12,19 @@ body{
   overflow-y: auto;
   background-color: #FAFAFA;
 }
+
+.body__container{
+  height: 100%;
+  width: 100%;
+  text-align: center;
+}
+
+.app__name{
+  padding: 2rem;
+}
+
+@media only screen and (max-width: 800px) {
+  .app__name{
+    padding: 1rem;
+  }
+}

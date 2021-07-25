@@ -1,5 +1,6 @@
 .searchBox__container{
     width: 100%;
+    text-align: start;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -8,10 +9,15 @@
     div{
         width: 70%;
         display: flex;
-        justify-content: center;
+        justify-content: flex-end;
 
         div, label{
             width: 100%;
+        }
+
+        .addTask__icon{
+            cursor: pointer;
+            font-size: 36px;
         }
     }
 }
