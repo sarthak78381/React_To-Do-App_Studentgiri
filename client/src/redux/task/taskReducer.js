@@ -48,7 +48,6 @@ const changeCompletionOfTask = (tasks, task) => {
         let stateTask = tasks[taskIndex];
         stateTask.completed = !stateTask.completed;
         tasks[taskIndex] = stateTask;
-        console.log(tasks[taskIndex])
     }
     return [...tasks];
 }
@@ -61,6 +60,11 @@ const taskReducer = (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 tasks: [...state.tasks, action.payload]
+            }
+        case taskTypes.GET_CURRENT_USER_TASK:
+            return {
+                ...state,
+                tasks: [...action.payload]
             }
         case taskTypes.REMOVE_TASK:
             return {

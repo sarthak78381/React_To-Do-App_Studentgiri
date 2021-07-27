@@ -10,7 +10,6 @@ import SignUp from '../signup/SignUp';
 import './signinsignup.scss'
 
 function SignInSignUp({currentUser}) {
-
     return !currentUser ? (
                 <div className='signinsignup__container'>
                     <SignIn />

@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react'
 
-import { useHistory } from 'react-router'
 import HomePage from './components/HomePage/HomePage'
+import Loader from './components/loader/Loader'
 import SignInSignUp from './components/signin&signup/SignInSignUp'
 import Header from './components/header/header'
 import { Switch, Route } from 'react-router'
@@ -12,9 +12,9 @@ import './App.css'
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect'
 import { getCurrentUser } from './redux/user/userSelector'
+import { getCurrentUserTask } from './redux/task/taskAction'
 
-function App({logUser, currentUser}) {
-    const history = useHistory();
+function App({logUser, currentUser, logUserTask}) {
 
     useEffect(() => {
         const getCurrentUser = async () => {
@@ -39,7 +39,8 @@ function App({logUser, currentUser}) {
 }
 
 const mapDispatchToProps = dispatch => ({
-    logUser: (user) => dispatch(setCurrentUser(user))
+    logUser: (user) => dispatch(setCurrentUser(user)),
+    logUserTask: (tasks) => dispatch(getCurrentUserTask(tasks))
 })
 
 const mapStateToProps = createStructuredSelector({

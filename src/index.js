@@ -17,8 +17,8 @@ const port = process.env.PORT;
 
 app.use(userRouter);
 app.use(taskRouter);
-
 app.use(cors);
+
 
 
 if (process.env.NODE_ENV === 'production') {

@@ -7,17 +7,21 @@ import { createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux';
 import { getCurrentUser } from '../../redux/user/userSelector';
 import { userLogOut } from '../../redux/user/userAction';
+import { getCurrentUserTask } from '../../redux/task/taskAction';
 
-function Header({currentUser, userLogout}) {
+function Header({currentUser, userLogout, logUserTask}) {
     const handleLogout = async () => {
         const data = await fetch('users/signout');
-        if (data.status === 200) return userLogout()
+        if (data.status === 200) {
+            logUserTask();
+            userLogout()
+        }
     }
     return (
         <div className='root'>
             <AppBar position="static" color='secondary'>
                 <div className="header__container">
-                    <Typography variant="h6">
+                    <Typography variant="h6" >
                     {
                         currentUser? `${currentUser.name}`:"Guest"
                     }
@@ -40,7 +44,8 @@ const mapStateToProps = createStructuredSelector({
 })
 
 const mapDispatchToProps = dispatch => ({
-    userLogout: () => dispatch(userLogOut())
+    userLogout: () => dispatch(userLogOut()),
+    logUserTask: () => dispatch(getCurrentUserTask([]))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);

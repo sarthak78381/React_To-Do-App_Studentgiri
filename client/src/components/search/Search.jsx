@@ -8,10 +8,11 @@ import { TextField } from '@material-ui/core'
 
 import './search.scss';
 
-function Search({tasks, newTask, filterTheTask}) {
+function Search({tasks, loadNewTask, filterTheTask}) {
     
     const [icon, showIcon] = useState(false);
     const [searchValue, changeSearchValue] = useState('');
+    const [error, isError] = useState(false);
 
     useEffect(() => {
         if (searchValue === '') {
@@ -31,19 +32,35 @@ function Search({tasks, newTask, filterTheTask}) {
             showIcon(false);
         }
     }
+    const handleSubmit = async () => {
+        isError(false);
+        const newTask = {title: searchValue, completed: false}
+        const task = await fetch('tasks', {
+            method: 'POST',
+            headers: {
+                "Content-Type": 'application/json'
+            },
+            body: JSON.stringify(newTask)
+        })
+        if (task.status === 201) {
+            const taskData = await task.json();
+            loadNewTask(taskData);
+            filterTheTask([]);
+            changeSearchValue('')
+        } else if (task.status === 400) {
+            isError(true)
+        }
+
+    }
 
     return (
         <div className="searchBox__container">
             <div>
                 <TextField id="standard-basic" label="Search Task Or Create New One" placeholder='Task Title' variant="outlined" color='secondary' InputProps={{
                     endAdornment: icon && (
-                        <i className="far fa-plus-square addTask__icon" onClick={() => {
-                            newTask({title: searchValue, completed: false});
-                            filterTheTask([]);
-                            changeSearchValue('')
-                        }}></i>
+                        <i className="far fa-plus-square addTask__icon" onClick={handleSubmit}></i>
                     )
-                }} onChange={handleChange} name='searchValue' value={searchValue}/>
+                }} onChange={handleChange} name='searchValue' value={searchValue} error={error} helperText={error?"title already in use":""}/>
             </div>
         </div>
     )
@@ -54,7 +71,7 @@ const mapStateToProps = createStructuredSelector({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-    newTask: (task) => dispatch(getNewTask(task)),
+    loadNewTask: (task) => dispatch(getNewTask(task)),
     filterTheTask: (filteredTask) => dispatch(filterTask(filteredTask))
 })
 

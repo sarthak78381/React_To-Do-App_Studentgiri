@@ -7,7 +7,7 @@ const postUserTask = async (req, res) => {
             owner: req.user._id
         });
         await new_task.save()
-        res.send(new_task)
+        res.status(201).send(new_task)
     } catch(error) {
         res.status(400);
         res.send(error.message);

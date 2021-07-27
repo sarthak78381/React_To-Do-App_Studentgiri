@@ -4,4 +4,4 @@ const userState = (state) => {
     return state.users;
 }
 
-export const getCurrentUser = createSelector([userState], (users) => users.user?.user);
+export const getCurrentUser = createSelector([userState], (users) => users.user);

@@ -3,7 +3,8 @@ const mongoose = require('mongoose');
 let taskSchema = mongoose.Schema({
     title: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
     completed: {
         type: Boolean,

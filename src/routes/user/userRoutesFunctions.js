@@ -2,11 +2,11 @@ const User = require('../../models/user');
 
 const createUser = async (req, res) => {
     try {
-        if (req.user) return res.redirect('/');
+        if (req.user) return res.status(300).send();
         const new_User = new User(req.body);
         let token = await new_User.generateAuthToken();
         res.cookie('userToken', token, { maxAge: 60000 * 60 * 24})
-        return res.status(201).json({user: new_User});
+        return res.status(201).json({...new_User._doc});
     } catch(error) {
         res.status(400);
         res.json({error: error.message});
@@ -22,11 +22,11 @@ const getUserData = async (req, res) => {
 
 const logInToUser = async (req, res) => {
     try {
-        if (req.user) return res.redirect('/');
+        if (req.user) return res.status(300).send();
         let user = await User.findByCredentials(req.body.userName, req.body.password);
         let token = await user.generateAuthToken();
         res.cookie('userToken', token, { maxAge: 60000 * 60 * 24})
-        return res.json({user});
+        return res.send({...user._doc});
     } catch(error) {
         return res.status(400).send({error: error.message});
     }

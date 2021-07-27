@@ -1,6 +1,10 @@
 import taskTypes from "./taskTypes";
 
 
+export const getCurrentUserTask = (tasks) => ({
+    type: taskTypes.GET_CURRENT_USER_TASK,
+    payload: tasks
+})
 
 export const getNewTask = (task) => ({
     type: taskTypes.GET_NEW_TASK,

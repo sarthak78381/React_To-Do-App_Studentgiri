@@ -3,7 +3,7 @@ import userTypes from "./userTypes";
 
 export const userLogIn = (user) => ({
     type: userTypes.USER_LOGIN,
-    payload: {...user}
+    payload: user
 })
 
 export const userSignUp = (user) => ({

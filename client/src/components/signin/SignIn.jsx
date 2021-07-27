@@ -41,10 +41,8 @@ function SignIn({userLogin}) {
             if (user.status === 200) {
                 isError(false)
                 const data = await user.json();
-                if (user) {
-                    userLogin(data);
-                    history.push('/')
-                }
+                userLogin({...data});
+                history.push('/')
             }
         } catch (e) {
             console.log(e)

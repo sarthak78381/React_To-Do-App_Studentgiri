@@ -14,11 +14,11 @@ function TaskContainer({tasks, filterTask}) {
             {filterTask.length === 0 && tasks.length === 0 && (
                 <h6>Add Todays Tasks to complete</h6>
             )}
-            {filterTask.length !== 0 && filterTask.map(tasks => (
-                <EachTask key={tasks.title} message={tasks.title}/>
+            {filterTask.length !== 0 && filterTask.map(task => (
+                <EachTask key={task.title} task={task}/>
             ))}
-            {filterTask.length === 0 && tasks.length !== 0 &&  tasks.map(tasks => (
-                <EachTask key={tasks.title} message={tasks.title}/>
+            {filterTask.length === 0 && tasks.length !== 0 &&  tasks.map(task => (
+                <EachTask key={task.title} task={task}/>
             ))}
         </div>
     );
