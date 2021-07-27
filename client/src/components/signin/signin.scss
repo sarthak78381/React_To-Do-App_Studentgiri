@@ -1,0 +1,19 @@
+.signIn__container{
+    width: 100%;
+    max-width: 35vw;
+
+    h2{
+        color: #f50057;
+    }
+
+    .signIn__button{
+        margin-top: 12rem;
+    }
+}
+
+
+@media only screen and (max-width: 800px) {
+    .signIn__container{
+        max-width: 50vw;
+    }
+}

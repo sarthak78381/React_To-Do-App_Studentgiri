@@ -1,22 +1,36 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import {Provider} from "react-redux";
-import store from './redux/store'
-import {BrowserRouter} from 'react-router-dom'
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+const express = require('express');
+require('../src/mongodb/mongodb');
+const cors = require('cors');
+const cookieParser = require('cookie-parser')
+const bodyParser = require('body-parser');
+const userRouter = require('../src/routes/user/userRoutes')
+const taskRouter = require('../src/routes/task/taskRoutes')
 
-ReactDOM.render(
-  <Provider store={store}>
-    <BrowserRouter>
-      <App />
-  </BrowserRouter>
-  </Provider>,
-  document.getElementById('root')
-);
+const app = express();
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cookieParser())
+
+
+const port = process.env.PORT;
+
+app.use(userRouter);
+app.use(taskRouter);
+
+app.use(cors);
+
+
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, 'client/build')));
+  
+  app.get('*', function(req, res) {
+    res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
+  });
+}
+
+
+app.listen(port, () => {
+  console.log('server is running on port:' + port)
+})
+

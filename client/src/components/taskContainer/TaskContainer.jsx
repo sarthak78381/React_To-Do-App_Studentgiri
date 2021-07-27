@@ -9,7 +9,6 @@ import EachTask from '../eachTask/EachTask';
 import './taskcontainer.scss';  
 
 function TaskContainer({tasks, filterTask}) {
-    console.log(filterTask)
     return (
         <div className='tasks__container'>
             {filterTask.length === 0 && tasks.length === 0 && (
