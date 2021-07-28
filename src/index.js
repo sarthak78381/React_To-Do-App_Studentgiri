@@ -11,10 +11,12 @@ const app = express();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cors());
 app.use(cookieParser())
 
 
 const port = process.env.PORT;
+
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '../', 'client/build')));
@@ -26,7 +28,6 @@ if (process.env.NODE_ENV === 'production') {
 
 app.use(userRouter);
 app.use(taskRouter);
-app.use(cors);
 
 app.listen(port, () => {
   console.log('server is running on port:' + port)
