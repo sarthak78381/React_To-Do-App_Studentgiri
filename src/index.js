@@ -7,6 +7,8 @@ const userRouter = require('../src/routes/user/userRoutes')
 const taskRouter = require('../src/routes/task/taskRoutes')
 const path = require('path');
 
+if (process.env.NODE_ENV !== 'production') require('dotenv').config();
+
 const app = express();
 
 app.use(bodyParser.json());
