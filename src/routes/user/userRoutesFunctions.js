@@ -2,7 +2,7 @@ const User = require('../../models/user');
 
 const createUser = async (req, res) => {
     try {
-        if (req.user) return res.status(300).send();
+        if (req.user) return res.status(300).json({...req.user});
         const new_User = new User(req.body);
         let token = await new_User.generateAuthToken();
         res.cookie('userToken', token, { maxAge: 60000 * 60 * 24})
@@ -22,7 +22,7 @@ const getUserData = async (req, res) => {
 
 const logInToUser = async (req, res) => {
     try {
-        if (req.user) return res.status(300).send();
+        if (req.user) return res.status(300).json({...req.user});
         let user = await User.findByCredentials(req.body.userName, req.body.password);
         let token = await user.generateAuthToken();
         res.cookie('userToken', token, { maxAge: 60000 * 60 * 24})

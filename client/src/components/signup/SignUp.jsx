@@ -39,7 +39,7 @@ function SignUp({userSignup}) {
             if (user.status === 400) {
                 isError(true)
             }
-            if (user.status === 201) {
+            if (user.status === 201 || user.status === 300) {
                 isError(false);
                 const data = await user.json();
                 if (user) {

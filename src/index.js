@@ -19,6 +19,8 @@ app.use(cookieParser())
 
 const port = `${process.env.PORT}`;
 
+app.use(userRouter);
+app.use(taskRouter);
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '../', 'client/build')));
@@ -28,8 +30,6 @@ if (process.env.NODE_ENV === 'production') {
   });
 }
 
-app.use(userRouter);
-app.use(taskRouter);
 
 app.listen(port, () => {
   console.log('server is running on port:' + port)
