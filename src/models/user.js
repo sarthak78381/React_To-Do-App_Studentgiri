@@ -5,7 +5,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const Cryptr = require('cryptr');
 
-const cryptr = new Cryptr(process.env.cryptr_secretkey);
+const cryptr = new Cryptr(`${process.env.cryptr_secretkey}`);
 
 const userSchema = new mongoose.Schema({
     name: {
@@ -42,7 +42,7 @@ const userSchema = new mongoose.Schema({
 
 userSchema.methods.generateAuthToken = async function() {
     let user = this;
-    let token = jwt.sign({_id: user._id.toString()}, process.env.jwt_key);
+    let token = jwt.sign({_id: user._id.toString()}, `${process.env.jwt_key}`);
     const encryptedToken = cryptr.encrypt(token);
     user.tokens.push({token});
     await user.save();

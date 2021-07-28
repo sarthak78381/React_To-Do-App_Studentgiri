@@ -17,7 +17,7 @@ app.use(cors());
 app.use(cookieParser())
 
 
-const port = process.env.PORT;
+const port = `${process.env.PORT}`;
 
 
 if (process.env.NODE_ENV === 'production') {
